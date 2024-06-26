@@ -1,26 +1,28 @@
 import { it } from "mocha";
-import saucedemoComp from './saucedemoComp.js';
+import loginPage from './login.page.js';
+import inventoryPage from "./inventoryPage.js";
+import cartPage from "./cartPage.js";
 import users from './users.js';
 
 describe('Add product', () => {
     
     it('Add product to the cart', async () => {
         browser.url('https://www.saucedemo.com/')
-        await saucedemoComp.setUsername(users.standartUser.email)
-        await saucedemoComp.setPassword(users.standartUser.password)
-        await saucedemoComp.clickLoginButton()
+        await loginPage.setUsername(users.standartUser.email)
+        await loginPage.setPassword(users.standartUser.password)
+        await loginPage.clickLoginButton()
         await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html')
 
-        await saucedemoComp.clickProcustOneCart()
-        let shoppingCartCount = await saucedemoComp.getShoppingCardCount()
-        await expect(shoppingCartCount).toHaveText('1')
+        await inventoryPage.clickProductCartIcon()
+        const shoppingCartCount = await inventoryPage.getShoppingCardCount()
+        await expect(shoppingCartCount).toBe('1')
 
-        await saucedemoComp.clickShoppingCard()
-        const addedProduct = await saucedemoComp.getAddedProduct()
+        await inventoryPage.clickShoppingCard()
+        const addedProduct = await cartPage.getAddedProduct()
         await expect(addedProduct).toHaveText('Sauce Labs Backpack')
 
-        await saucedemoComp.clickRemoveButton()
-        const cartItems = await saucedemoComp.cartItems()
+        await cartPage.clickRemoveButton()
+        const cartItems = await cartPage.cartItems()
         await expect(cartItems).toBeElementsArrayOfSize({ eq: 0 })
       })
 })

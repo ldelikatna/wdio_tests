@@ -1,22 +1,23 @@
 import { it } from "mocha";
-import saucedemoComp from './saucedemoComp.js';
+import loginPage from './login.page.js';
+import inventoryPage from "./inventoryPage.js";
 import users from './users.js';
 
 describe('login', () => {
     it ('Perform Login', async () => {
         browser.url('https://www.saucedemo.com/')
-        await saucedemoComp.setUsername(users.standartUser.email)
-        await saucedemoComp.setPassword(users.standartUser.password)
-        await saucedemoComp.clickLoginButton()
+        await loginPage.setUsername(users.standartUser.email)
+        await loginPage.setPassword(users.standartUser.password)
+        await loginPage.clickLoginButton()
         await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html')
 
         const elementProducts = await $('[data-test="title"]')
         await expect(elementProducts).toHaveText('Products')
 
-        const cartIconVisible = await saucedemoComp.cartIconVisible()
+        const cartIconVisible = await inventoryPage.cartIconVisible()
         await expect(cartIconVisible).toBe(true)
 
-        const getProductsCount = await saucedemoComp.getProducts()
+        const getProductsCount = await inventoryPage.getProducts()
         await expect(getProductsCount).toBeElementsArrayOfSize({ gte: 1 })
     })
 
