@@ -1,11 +1,12 @@
 import { it } from "mocha";
-import loginPage from './login.page.js';
-import inventoryPage from "./inventoryPage.js";
-import users from './users.js';
+import loginPage from './pageObjects/loginPage.js';
+import inventoryPage from "./pageObjects/inventoryPage.js";
+import users from './users/users.js';
+
 
 describe('login', () => {
     it ('Perform Login', async () => {
-        browser.url('https://www.saucedemo.com/')
+        await browser.url('/')
         await loginPage.setUsername(users.standartUser.email)
         await loginPage.setPassword(users.standartUser.password)
         await loginPage.clickLoginButton()

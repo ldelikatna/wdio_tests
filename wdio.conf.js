@@ -32,9 +32,14 @@ export const config = {
     exclude: [
        // 'path/to/excluded/files'
     ],
-    suites: [{
-        login: './wdio_test/wdio_tests/login.test.js'
-    }],
+    suites: {
+        login: [
+            './wdio_tests/login.test.js'
+        ],
+        addproduct: [
+            './wdio_tests/addProduct.test.js'
+        ]
+    },
     //
     // ============
     // Capabilities
@@ -93,6 +98,7 @@ export const config = {
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
     // baseUrl: 'http://localhost:8080',
+     baseUrl: 'https://www.saucedemo.com/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,

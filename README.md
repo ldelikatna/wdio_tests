@@ -6,6 +6,6 @@ This project contains automated tests for (https://www.saucedemo.com/). The test
 To install WDIO run 'npm init wdio@latest'
 
 
-## Test execution
-For addProduct.test.js, run 'npx wdio run wdio.conf.js --spec ./wdio_tests/addProduct.test.js'
-For login.test.js, run 'npx wdio run wdio.conf.js --spec ./wdio_tests/login.test.js'
+## Test execution'
+For login.test.js, run 'npm run login'
+For addProduct.test.js, run 'npm run addproduct'

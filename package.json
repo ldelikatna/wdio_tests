@@ -11,8 +11,8 @@
     "wdio-chromedriver-service": "^8.1.1"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js",
-    "login": "npx wdio --suite login"
+    "login": "npx wdio --suite login",
+    "addproduct": "npx wdio --suite addproduct"
   },
   "dependencies": {
     "chai": "^5.1.1"
